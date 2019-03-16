@@ -1,0 +1,17 @@
+<div class="topnav" [ngClass]="{'responsive': isResponsive, 'opening': isOpening, 'closing': isClosing}">
+  <app-logo class="logo"></app-logo>
+  <label for="nav-toggle" class="nav-toggle-label">
+    <a href="javascript:void(0);" (click)="onExpand()" class="expand-icon">
+      <i class="material-icons">
+        menu
+      </i>
+    </a>
+  </label>
+  <nav>
+    <ul>
+      <li><a routerLink="/index" routerLinkActive="active">Home</a></li>
+      <li><a routerLink="/services" routerLinkActive="active">Services</a></li>
+      <li><a routerLink="/contact" routerLinkActive="active">Contact</a></li>
+    </ul>
+  </nav>
+</div>

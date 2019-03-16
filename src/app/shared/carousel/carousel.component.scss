@@ -1,0 +1,194 @@
+$carousel-height: 500px;
+$dot-control-container-height: 75px;
+$primaryBackgroundColor: rgb(255, 219, 160);
+$secondaryBackgroundColor: rgba($color: hsl(0, 83%, 30%), $alpha: .75);
+.image-container {
+    overflow: hidden;
+}
+
+.text-container {
+    position: absolute;
+    height: $dot-control-container-height;
+    width: 25%;
+    z-index: 1;
+    margin: 300px 0 0 100px;
+
+    font-family: 'Playball', cursive;
+    font-size: 24pt;
+    font-weight: 800;
+    color: $secondaryBackgroundColor;
+    text-align: center;
+}
+
+.carousel {
+    height: $carousel-height;
+    background: $primaryBackgroundColor;
+}
+
+.slide-container {
+    height: 100%;
+    width: 100%;
+}
+
+img {
+    display: none;
+}
+
+
+// CONTROLS
+.control-container {
+    width: 100%;
+}
+
+// arrows
+.arrow-control {
+    width: auto;
+    height: 300px;
+    margin: 100px 0;
+    display: inline-flex;
+    position: absolute;
+    z-index: 1;
+
+    i {
+        font-size: 56pt;
+        color: $primaryBackgroundColor;
+        margin: auto;
+    }
+
+    li {
+        list-style: none;
+        position: relative;
+    }
+
+    &:hover {
+        background-color: $secondaryBackgroundColor;
+        cursor: pointer;
+
+        i {
+            color: white;
+        }
+    }
+}
+
+.arrow-control-right {
+    border-radius: 100px 0 0 100px;
+}
+
+.arrow-control-left {
+    border-radius: 0 100px 100px 0;
+}
+
+// dots
+.dot-control-container {
+    height: $dot-control-container-height;
+    width: 100%;
+    position: absolute;
+    z-index: 1;
+    margin-top: calc(#{$carousel-height} - #{$dot-control-container-height});
+    text-align: center;
+
+    li {
+        display: inline;
+    }
+
+    ul {
+        margin: auto;
+        padding: 0;
+    }
+}
+
+
+.dot-control {
+    display: inline-block;
+    height: 10px;
+    width: 10px;
+    background-color: $primaryBackgroundColor;
+    border-radius: 10px;
+    margin: 20px 10px;
+    box-shadow: 0px 0px 0px 1px gray;
+
+    &:hover {
+        background-color: rgba($color: $secondaryBackgroundColor, $alpha:.4);
+        cursor: pointer;
+    }
+
+}
+
+.selected {
+    background-color: $secondaryBackgroundColor;
+}
+
+
+
+
+// SLIDE MECHANISM
+.active {
+    height: $carousel-height;
+    width: 100%;
+    display: inline;
+    position: absolute;
+    object-fit: cover;
+}
+
+.slide-right {
+    left: 0%;
+    animation: slide-right 1.5s 1 ease-out;
+}
+
+.slide-left {
+    left: 0%;
+    animation: slide-left 1.5s 1 ease-out;
+}
+
+.hide-right {
+    left: 100%;
+    animation: hide-right 1.5s 1 ease-out;
+}
+
+.hide-left {
+    left: -100%;
+    animation: hide-left 1.5s 1 ease-out;
+}
+
+@keyframes slide-left {
+    0% {
+        left: 100%;
+    }
+
+    100% {
+        left: 0%;
+    }
+}
+
+// slide-right
+@keyframes slide-right {
+    0% {
+        left: -100%;
+    }
+
+    100% {
+        left: 0%;
+    }
+}
+
+// hide-left
+@keyframes hide-left {
+    0% {
+        left: 0%;
+    }
+
+    100% {
+        left: -100%;
+    }
+}
+
+// hide-right
+@keyframes hide-right {
+    0% {
+        left: 0%;
+    }
+
+    100% {
+        left: 100%;
+    }
+}

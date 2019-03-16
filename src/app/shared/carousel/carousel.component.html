@@ -1,0 +1,34 @@
+<div class="carousel">
+    <div class="text-container">
+        Best Cleaning Service in Arizona
+    </div>
+    <div *ngIf="images.length > 2 && controls"class="control-container">
+        <!-- turn controllers off if one image or turned off -->
+        <div class="dot-control-container">
+            <ul>
+                <li *ngFor="let img of images; let i = index">
+                    <i [ngClass]="{'selected': current == i}" class="dot-control" (click)="jumpToSlide(i)"></i>
+                </li>
+            </ul>
+        </div>
+        <div (click)="slideRight()" style="right: 0;" class="arrow-control arrow-control-right">
+            <i class="material-icons">
+                chevron_right
+            </i>
+        </div>
+        <div (click)="slideLeft()" class="arrow-control arrow-control-left">
+            <i class="material-icons">
+                chevron_left
+            </i>
+        </div>
+    </div>
+    <div class="slide-container">
+        <!-- add blank if no images -->
+        <div class="image-container" *ngFor="let img of images; let i = index">
+            <picture>
+                <source type="image/webp" srcset="{{images[i]}}.webp">
+                <img id="image{{i}}" src="{{images[i]}}.jpg">
+            </picture>
+        </div>
+    </div>
+</div>

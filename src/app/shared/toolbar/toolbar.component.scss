@@ -1,0 +1,149 @@
+$primary: white;
+
+/* desktop topnav state */
+:host {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 2;
+    height: 50px;
+    color: navy;
+}
+
+
+.topnav {
+    display: grid;
+    grid-template-columns: 1fr minmax(250px, auto) minmax(600px, auto) 1fr;
+    grid-template-areas: '. logo navs .';
+
+    .logo {
+        grid-area: logo;
+
+        a {
+
+            font-size: 48px;
+        }
+    }
+
+    nav {
+        grid-area: navs;
+        display: grid;
+        place-items: center end;
+
+        a {
+            font-family: 'Source Sans',
+                sans-serif;
+            font-size: 1.1em;
+        }
+    }
+}
+
+.logo {
+    grid-area: logo;
+
+    a {
+
+        font-size: 48px;
+    }
+}
+
+*,
+*::before,
+*::after {
+    background-color: $primary;
+    box-sizing: border-box;
+}
+
+nav {
+    // position: absolute;
+    // text-align: left;
+    // top: 100%;
+    // left: 0;
+    // background-color: $primary;
+    // width: 100%;
+    // transform: scale(1, 0);
+    // transform-origin: top;
+    // transition: transform 400ms ease-in-out;
+}
+
+nav ul {
+    // margin: 0;
+    // padding: 0;
+    list-style: none;
+    // display: flex;
+    // float: right;
+    // grid-template-columns: repeat(4, 1fr);
+    // grid-auto-rows: minmax(150px, auto);
+    // grid-gap: 1em;
+    // align-items: center;
+    // align-content: flex-end;
+}
+
+nav li {
+    // margin: 0 1em 0em 0;
+    display: inline-flex;
+    box-sizing: content-box;
+    padding: 0 15px;
+}
+
+nav a {
+    color: rgb(54, 54, 54);
+    text-decoration: none;
+    font-size: .9em;
+    // text-transform: uppercase;
+    // background-color: $primary;
+    // opacity: 0;
+    // transition: opacity 150ms ease-in-out;
+}
+
+// nav a:hover {
+//     color: rgba($color: black, $alpha: .250);
+// }
+
+// .nav-toggle:checked ~ nav {
+//     display: block;
+//     transform: scale(1, 1);
+// }
+// .nav-toggle:checked ~ nav a {
+//     opacity: 1;
+//     transition: opacity 250ms ease-in-out 250ms;
+// }
+
+.nav-toggle-label {
+    display: none;
+}
+@media screen and (min-width: 700px) {
+
+}
+// .nav-toggle-label {
+//     position: absolute;
+//     top: 0;
+//     right: 0;
+//     font-size: 2.2rem;
+//     margin-right: 1em;
+//     height: 100%;
+//     display: flex;
+//     align-items: center;
+// }
+
+
+
+// @media screen and (min-width: 800px) {
+//     .nav-toggle-label {
+//         // display: none;
+//     }
+//     .topnav {
+//         display: grid;
+//         grid-template-columns: 1fr auto minmax(600px, 1fr) 1fr;
+//         grid-template-areas: '. logo navs .' 
+//     }
+//     .logo{
+//         grid-column: logo;
+//     }
+nav {
+    // display: grid;
+    // position: fixed;
+    // grid-column: navs;
+}
+
+// }

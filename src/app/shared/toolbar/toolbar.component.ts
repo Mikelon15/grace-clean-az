@@ -18,29 +18,19 @@ enum Direction {
 @Component({
   selector: 'app-toolbar',
   templateUrl: './toolbar.component.html',
-  styleUrls: ['./toolbar.component.less'],
-  animations: [
-    trigger('toggle', [
-      state(
-        VisibilityState.Hidden,
-        style({ opacity: 0, transform: 'translateY(-100px)' })
-      ),
-      state(
-        VisibilityState.Visible,
-        style({ opacity: 1, transform: 'translateY(0)' })
-      ),
-      transition('* => *', animate('200ms ease-in'))
-    ])
-  ]
+  styleUrls: ['./toolbar.component.less']
 })
 
 
 export class ToolbarComponent implements OnInit, AfterViewInit {
   private isVisible = true;
   isResponsive = false;
+  isMobile = false;
   isClosing = false;
   isOpening = false;
-  isMobile = false;
+
+  navClosing = false;
+  navOpening = false;
   toggling = 150; // toggling anim duration in ms
 
   @HostBinding('@toggle')
@@ -63,32 +53,6 @@ export class ToolbarComponent implements OnInit, AfterViewInit {
       share()
     );
 
-    const resize$ = fromEvent(window, 'resize').pipe(
-      map(() => window.innerWidth),
-      map((w) => {
-        if (w < 860) {
-          this.isMobile = true;
-          return Direction.Up;
-        }
-        else {
-          this.isMobile = false;
-          return Direction.Down;
-        }
-      }),
-      distinctUntilChanged(),
-      share()
-    );
-
-    const resizeUp$ = resize$.pipe(
-      filter(direction => direction === Direction.Up)
-    );
-
-    const resizeDown$ = resize$.pipe(
-      filter(direction => direction === Direction.Down)
-    );
-
-    resizeUp$.subscribe(() => (this.isVisible = true));
-    resizeDown$.subscribe(() => (this.isVisible = false));
 
     const goingUp$ = scroll$.pipe(
       filter(direction => direction === Direction.Up)
@@ -98,12 +62,11 @@ export class ToolbarComponent implements OnInit, AfterViewInit {
       filter(direction => direction === Direction.Down)
     );
 
-    goingUp$.subscribe(() => (this.isVisible = true));
-    goingDown$.subscribe(() => (this.isVisible = false));
+    goingUp$.subscribe(() => {this.navOpening = true; this.navClosing = false; });
+    goingDown$.subscribe(() => {this.navOpening = false; this.navClosing = true;});
   }
 
   ngOnInit() {
-
     if (window.innerWidth < 860) {
       this.isVisible = true;
       this.isMobile = true;

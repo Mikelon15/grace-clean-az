@@ -1,4 +1,4 @@
-<div class="topnav" [ngClass]="{'opening': isOpening, 'closing': isClosing}">
+<div class="topnav" [ngClass]="{'closing': navClosing, 'opening': navOpening}">
   <app-logo class="logo"></app-logo>
   <label for="nav-toggle" class="nav-toggle-label">
     <a href="javascript:void(0);" (click)="onExpand()" class="expand-icon">

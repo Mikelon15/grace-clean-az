@@ -36,7 +36,7 @@ enum Direction {
 
 
 export class ToolbarComponent implements OnInit, AfterViewInit {
-  private isVisible = false;
+  private isVisible = true;
   isResponsive = false;
   isClosing = false;
   isOpening = false;
@@ -58,7 +58,7 @@ export class ToolbarComponent implements OnInit, AfterViewInit {
       throttleTime(10),
       map(() => window.pageYOffset),
       pairwise(),
-      map(([y1, y2]): Direction => ((y2 < y1 && (window.pageYOffset > 25 || this.isMobile)) ? Direction.Up : Direction.Down)),
+      map(([y1, y2]): Direction => ((y2 < y1) ? Direction.Up : Direction.Down)),
       distinctUntilChanged(),
       share()
     );

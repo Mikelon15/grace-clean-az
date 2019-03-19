@@ -4,7 +4,6 @@ import { LogoComponent } from './logo/logo.component';
 import { RouterModule, Routes } from '@angular/router';
 
 import { ToolbarComponent } from './toolbar/toolbar.component';
-import { CarouselComponent } from './carousel/carousel.component';
 
 @NgModule({
   imports: [
@@ -14,12 +13,10 @@ import { CarouselComponent } from './carousel/carousel.component';
   declarations: [
     LogoComponent,
     ToolbarComponent,
-    CarouselComponent
   ],
   exports: [
     LogoComponent,
-    ToolbarComponent,
-    CarouselComponent
+    ToolbarComponent
   ],
 })
 export class CommonUXModule { }

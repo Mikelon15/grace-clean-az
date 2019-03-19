@@ -1,0 +1,144 @@
+@primary-color: navy;
+@primary-bg: #f2f4f6;
+@secondary-color: rgb(70, 70, 95);
+@secondary-bg: @primary-bg;
+
+/* desktop topnav state */
+:host {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 2;
+    height: 50px;
+    color: navy;
+}
+
+.topnav {
+    display: grid;
+    grid-template-columns: 1fr minmax(250px, auto) minmax(600px, auto) 1fr;
+    grid-template-areas: '. logo navs .';
+
+    .logo {
+        grid-area: logo;
+
+        a {
+
+            font-size: 48px;
+        }
+    }
+}
+
+nav {
+    grid-area: navs;
+    display: grid;
+    place-items: center end;
+
+    a {
+        font-family: 'Source Sans',
+            sans-serif;
+        font-size: 1.1em;
+
+    }
+}
+
+.logo {
+    grid-area: logo;
+
+    a {
+
+        font-size: 48px;
+    }
+}
+
+*,
+*::before,
+*::after {
+    background-color: @primary-bg;
+    box-sizing: border-box;
+}
+
+nav ul {
+    list-style: none;
+}
+
+nav li {
+    display: inline-flex;
+    box-sizing: content-box;
+    padding: 0 15px;
+}
+
+nav a {
+    color: @primary-color;
+    text-decoration: none;
+    font-size: .9em;
+}
+
+
+.nav-toggle-label {
+    display: none;
+}
+
+
+
+@media only screen and (max-width: 850px) {
+    .topnav {
+        grid-template-columns: auto minmax(250px, auto) minmax(auto, 250px) auto;
+    }
+
+    .nav-toggle-label {
+        margin-right: 1em;
+        grid-area: navs;
+        font-size: 2.2rem;
+        display: grid;
+        place-items: center end;
+    }
+
+    nav {
+        position: absolute;
+        text-align: left;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        margin: 25px 0;
+        place-items: center center;
+        color: @primary-color;
+        transform: scale(1, 0);
+        transform-origin: top;
+        transition: transform 400ms ease-in-out;
+
+    }
+
+    nav ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    nav li {
+        margin-bottom: 1em;
+        margin-left: 1em;
+        text-align: center;
+        display: block;
+    }
+
+    nav a {
+        text-decoration: none;
+        font-size: 1.2rem;
+        text-transform: uppercase;
+        opacity: 0;
+        transition: opacity 150ms ease-in-out;
+    }
+
+    .topnav nav.responsive {
+        color: @primary-color;
+    }
+
+    nav.responsive {
+        transform: scale(1, 1);
+    }
+
+    nav.responsive a {
+        opacity: 1;
+        transition: opacity 250ms ease-in-out 250ms;
+    }
+}

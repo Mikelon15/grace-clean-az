@@ -18,7 +18,7 @@ enum Direction {
 @Component({
   selector: 'app-toolbar',
   templateUrl: './toolbar.component.html',
-  styleUrls: ['./toolbar.component.scss'],
+  styleUrls: ['./toolbar.component.less'],
   animations: [
     trigger('toggle', [
       state(
@@ -52,32 +52,29 @@ export class ToolbarComponent implements OnInit, AfterViewInit {
     public router: Router
   ) { }
 
+
   ngAfterViewInit() {
-    if(window.innerWidth < 700) {
-      this.isVisible = true;
-      this.isMobile = true;
-    }
     const scroll$ = fromEvent(window, 'scroll').pipe(
-      throttleTime(100),
+      throttleTime(10),
       map(() => window.pageYOffset),
       pairwise(),
-      map(([y1, y2]): Direction => ((y2 < y1 && (window.pageYOffset > 25 || this.isMobile) ) ? Direction.Up : Direction.Down)),
+      map(([y1, y2]): Direction => ((y2 < y1 && (window.pageYOffset > 25 || this.isMobile)) ? Direction.Up : Direction.Down)),
       distinctUntilChanged(),
       share()
     );
-    
+
     const resize$ = fromEvent(window, 'resize').pipe(
-      map(()=> window.innerWidth),
+      map(() => window.innerWidth),
       map((w) => {
-        if (w < 700) {
+        if (w < 860) {
           this.isMobile = true;
-           return Direction.Up;
-          }
-          else {
-            this.isMobile = false;
-           return Direction.Down;
-         } 
-        }),
+          return Direction.Up;
+        }
+        else {
+          this.isMobile = false;
+          return Direction.Down;
+        }
+      }),
       distinctUntilChanged(),
       share()
     );
@@ -106,6 +103,11 @@ export class ToolbarComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
+
+    if (window.innerWidth < 860) {
+      this.isVisible = true;
+      this.isMobile = true;
+    }
     this.router.events
       .subscribe((event) => { if (event instanceof NavigationEnd) this.close() });
   }

@@ -1,4 +1,4 @@
-<div class="topnav" [ngClass]="{'responsive': isResponsive, 'opening': isOpening, 'closing': isClosing}">
+<div class="topnav" [ngClass]="{'opening': isOpening, 'closing': isClosing}">
   <app-logo class="logo"></app-logo>
   <label for="nav-toggle" class="nav-toggle-label">
     <a href="javascript:void(0);" (click)="onExpand()" class="expand-icon">
@@ -7,7 +7,7 @@
       </i>
     </a>
   </label>
-  <nav>
+  <nav [ngClass]="{'responsive': isResponsive}">
     <ul>
       <li><a routerLink="/index" routerLinkActive="active">Home</a></li>
       <li><a routerLink="/services" routerLinkActive="active">Services</a></li>

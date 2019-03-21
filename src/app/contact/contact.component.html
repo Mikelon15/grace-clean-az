@@ -1,3 +1,33 @@
-<p>
-  contact works!
-</p>
+<div style="height: 80px;"></div>
+<div class="form-container">
+  <h1>Contact Us</h1>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <br>
+    <mat-form-field class="full-width">
+      <input matInput type="text" placeholder="Name" formControlName="name">
+      <mat-error *ngIf="form.controls.message.hasError('required')">
+        Name is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field class="full-width">
+      <input matInput type="text" placeholder="Email" formControlName="email">
+      <mat-error *ngIf="form.controls.email.hasError('email') && !form.controls.email.hasError('required')">
+        Please enter a valid email address
+      </mat-error>
+      <mat-error *ngIf="form.controls.email.hasError('required')">
+        Email is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field class="full-width">
+      <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="2"
+        cdkAutosizeMaxRows="15" placeholder="Send us a message" formControlName="message"> </textarea>
+      <mat-error *ngIf="form.controls.message.hasError('required')">
+        Message is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <br>
+    <button type="submit" [disabled]="form.invalid">Submit</button>
+  </form>
+</div>

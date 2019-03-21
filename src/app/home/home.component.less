@@ -24,7 +24,9 @@ h2 {
         color: @primary-color;
     }
 }
-
+.large {
+    padding: 100px 0;
+}
 .row-2 {
     display: grid;
     grid-template-columns: 1fr 350px 1fr 350px 1fr;
@@ -78,6 +80,28 @@ h2 {
     .right {
         place-items: flex-start flex-start;
         text-align: left;
+    }
+}
+
+
+.service {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(250px, auto));
+    grid-column-gap: 25px;
+    grid-template-rows: 100px 250px;
+    grid-area: 
+    'title'
+    'pic';
+
+}
+
+.service-item {
+    h2 {
+        grid-area: title;
+    }
+    img {
+        grid-area: pic;
+        height: 200px;
     }
 }
 
@@ -206,3 +230,4 @@ nav {
             "   . right .";
     }
 }
+

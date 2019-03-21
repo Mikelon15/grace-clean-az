@@ -13,6 +13,13 @@
     color: navy;
 }
 
+*,
+*::before,
+*::after {
+    background-color: @primary-bg;
+    box-sizing: border-box;
+}
+
 .topnav {
     display: grid;
     grid-template-columns: 1fr minmax(250px, auto) minmax(600px, auto) 1fr;
@@ -22,9 +29,47 @@
         grid-area: logo;
 
         a {
-
             font-size: 48px;
         }
+    }
+
+}
+
+.topnav.opening {
+    opacity: 1;
+    transform: translateY(0px);
+    animation-name: slide-in;
+    animation-duration: .5s;
+}
+
+@keyframes slide-in {
+    from {
+        opacity: 0;
+        transform: translateY(-100px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+
+.topnav.hidden {
+    opacity: 0;
+    transform: translateY(-100px);
+    animation-name: slide-out;
+    animation-duration: .5s;
+}
+
+@keyframes slide-out {
+    from {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+
+    to {
+        opacity: 0;
+        transform: translateY(-100px);
     }
 }
 
@@ -33,58 +78,36 @@ nav {
     display: grid;
     place-items: center end;
 
+
     a {
         font-family: 'Source Sans',
             sans-serif;
-        font-size: 1.1em;
-
+        font-size: 1.0em;
+        color: @primary-color;
+        text-decoration: none;
+    }
+    
+    ul {
+        list-style: none;
+    }
+    
+    li {
+        display: inline-flex;
+        box-sizing: content-box;
+        padding: 0 15px;
     }
 }
-
-.logo {
-    grid-area: logo;
-
-    a {
-
-        font-size: 48px;
-    }
-}
-
-*,
-*::before,
-*::after {
-    background-color: @primary-bg;
-    box-sizing: border-box;
-}
-
-nav ul {
-    list-style: none;
-}
-
-nav li {
-    display: inline-flex;
-    box-sizing: content-box;
-    padding: 0 15px;
-}
-
-nav a {
-    color: @primary-color;
-    text-decoration: none;
-    font-size: .9em;
-}
-
 
 .nav-toggle-label {
     display: none;
 }
 
-
-
 @media only screen and (max-width: 850px) {
+    // RESPONSIVE, MENU CLOSED
     .topnav {
         grid-template-columns: auto minmax(250px, auto) minmax(auto, 250px) auto;
     }
-
+    
     .nav-toggle-label {
         margin-right: 1em;
         grid-area: navs;
@@ -92,35 +115,30 @@ nav a {
         display: grid;
         place-items: center end;
     }
-
+    
     nav {
         color: @primary-color;
         position: absolute;
         grid-area: inherit;
         display: block;
         width: 100%;
-        top: 100%;
+        top: 80px;
         left: 0;
-
         transform: scale(1, 0);
-        transform-origin: top;
-        transition: transform 400ms ease-in-out;
-
     }
-
+    
     nav ul {
         margin: 0;
         padding: 0;
         list-style: none;
     }
-
+    
     nav li {
-        margin-bottom: 1em;
-        margin-left: 1em;
+        margin: 1em;
         text-align: center;
         display: block;
     }
-
+    
     nav a {
         text-decoration: none;
         font-size: 1.2rem;
@@ -128,53 +146,25 @@ nav a {
         opacity: 0;
         transition: opacity 150ms ease-in-out;
     }
-
-    .topnav nav.responsive {
-        color: @primary-color;
-    }
-
+    
+    // RESPONSIVE, MENU OPENED
     nav.responsive {
         transform: scale(1, 1);
+        transform-origin: top;
+        transition: transform 150ms ease-in-out;
+
     }
 
     nav.responsive a {
         opacity: 1;
-        transition: opacity 250ms ease-in-out 250ms;
+        transition: opacity 150ms ease-in-out 50ms;
     }
-}
 
-.opening {
-        opacity: 1;
-        transform: translateY(0px);
-      animation-name: slide-in;
-      animation-duration: .5s;
-}
+    nav.closing {
+        transform: scale(1, 0);
+        transform-origin: top;
+        transition: transform 150ms ease-in-out;
+        
+    }
 
-.closing {
-    opacity: 0;
-    transform: translateY(-100px);
-      animation-name: slide-out;
-      animation-duration: .5s;
-}
-
-@keyframes slide-in {
-    from {
-        opacity: 0;
-        transform: translateY(-100px);
-    } 
-    to {
-        opacity: 1;
-        transform: translateY(0px);
-    }
-}
-@keyframes slide-out {
-    from {
-        opacity: 1;
-        transform: translateY(0px);
-    }
-    
-    to {
-        opacity: 0;
-        transform: translateY(-100px);
-    }
 }

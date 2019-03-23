@@ -1,15 +1,40 @@
-
+.contact-us{
+    min-height: 400px;
+    width: 40%;
+    margin: 50px 30% 150px 30%;
+}
 .form-container {
     display: flex;
     flex-direction: column;
-    text-align: center;
 }
 
-.form-container>* {
-    margin: 0 30%;
-    width: 40%;
-}
 .full-width {
     margin: 15px 0 0 0;
     width: 100%;
 }
+h1 {
+    color: navy;
+    margin-bottom: 10px;
+}
+h5 {
+    margin: 0;
+}
+
+ button {
+     padding: 10px;
+     border-radius: 5px;
+     border-width: 0;
+     background-color: navy;
+     color: white;
+
+     &:hover {
+         background-color: blue;
+         cursor: pointer;
+     }
+
+     &:disabled {
+         background-color: gray;
+         color: lightgray;
+         cursor: inherit;
+     }
+ }

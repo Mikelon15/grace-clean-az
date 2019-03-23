@@ -1,33 +1,46 @@
 <div style="height: 80px;"></div>
-<div class="form-container">
-  <h1>Contact Us</h1>
-  <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <br>
-    <mat-form-field class="full-width">
-      <input matInput type="text" placeholder="Name" formControlName="name">
-      <mat-error *ngIf="form.controls.message.hasError('required')">
-        Name is <strong>required</strong>
-      </mat-error>
-    </mat-form-field>
-    <br>
-    <mat-form-field class="full-width">
-      <input matInput type="text" placeholder="Email" formControlName="email">
-      <mat-error *ngIf="form.controls.email.hasError('email') && !form.controls.email.hasError('required')">
-        Please enter a valid email address
-      </mat-error>
-      <mat-error *ngIf="form.controls.email.hasError('required')">
-        Email is <strong>required</strong>
-      </mat-error>
-    </mat-form-field>
-    <br>
-    <mat-form-field class="full-width">
-      <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="2"
-        cdkAutosizeMaxRows="15" placeholder="Send us a message" formControlName="message"> </textarea>
-      <mat-error *ngIf="form.controls.message.hasError('required')">
-        Message is <strong>required</strong>
-      </mat-error>
-    </mat-form-field>
-    <br>
-    <button type="submit" [disabled]="form.invalid">Submit</button>
-  </form>
+<div class="contact-us">
+  <div *ngIf="!successSent" class="form-container">
+    <h1>Contact Us</h1>
+    <h5>Please fill out the form below and we will get back to you within 24 hours. </h5>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <br>
+      <mat-form-field class="full-width">
+        <input matInput type="text" placeholder="Name" formControlName="name">
+        <mat-error *ngIf="form.controls.message.hasError('required')">
+          Name is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <br>
+      <mat-form-field class="full-width">
+        <input matInput type="text" placeholder="Email" formControlName="email">
+        <mat-error *ngIf="form.controls.email.hasError('email') && !form.controls.email.hasError('required')">
+          Please enter a valid email address
+        </mat-error>
+        <mat-error *ngIf="form.controls.email.hasError('required')">
+          Email is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <br>
+      <mat-form-field class="full-width">
+        <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="2"
+          cdkAutosizeMaxRows="15" placeholder="Send us a message" formControlName="message"> </textarea>
+        <mat-error *ngIf="form.controls.message.hasError('required')">
+          Message is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <re-captcha formControlName="recaptcha"></re-captcha>
+      <br>
+      <button type="submit" [disabled]="form.invalid">Submit</button>
+    </form>
+  </div>
+
+  <div *ngIf="successSent" class="succes-form">
+    <h1> 
+      <i class="material-icons">
+        done
+      </i>
+      Thank you for your message</h1>
+    <h5>Your message was sent. We will get back to you within 24 hours. </h5>
+  </div>
 </div>

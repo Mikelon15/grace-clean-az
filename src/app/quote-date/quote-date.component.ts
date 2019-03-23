@@ -2,16 +2,25 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AngularFirestore } from '@angular/fire/firestore';
 
-@Component({
-  selector: 'app-contact',
-  templateUrl: './contact.component.html',
-  styleUrls: ['./contact.component.less']
-})
-export class ContactComponent {
+export interface Food {
+  value: string;
+  viewValue: string;
+}
 
+@Component({
+  selector: 'app-quote-date',
+  templateUrl: './quote-date.component.html',
+  styleUrls: ['./quote-date.component.less']
+})
+export class QuoteDateComponent {
+
+  foods: Food[] = [
+    { value: 'steak-0', viewValue: 'Steak' },
+    { value: 'pizza-1', viewValue: 'Pizza' },
+    { value: 'tacos-2', viewValue: 'Tacos' }
+  ];
   form: FormGroup;
-  successSent = false;
-  constructor(private fb: FormBuilder, private af: AngularFirestore ) {
+  constructor(private fb: FormBuilder, private af: AngularFirestore) {
     this.createForm();
   }
   createForm() {
@@ -19,7 +28,6 @@ export class ContactComponent {
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       message: ['', Validators.required],
-      recaptcha: [null, Validators.required]
     });
     console.log(this.form.controls);
   }
@@ -35,7 +43,5 @@ export class ContactComponent {
     let formRequest = { name, email, message, date, html };
     this.af.collection('messages').add(formRequest);
     this.form.reset();
-    this.successSent = true;
   }
-
 }

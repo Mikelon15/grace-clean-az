@@ -15,6 +15,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatRadioModule } from '@angular/material/radio'
 
 
 
@@ -51,7 +52,8 @@ import { QuoteDateComponent } from './quote-date/quote-date.component';
     MatSelectModule,
     MatButtonModule,
     MatCheckboxModule,
-    MatChipsModule
+    MatChipsModule,
+    MatRadioModule,
   ],
   providers: [{
     provide: RECAPTCHA_SETTINGS,

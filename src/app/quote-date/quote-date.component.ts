@@ -19,6 +19,9 @@ export class QuoteDateComponent {
     { value: 'pizza-1', viewValue: 'Pizza' },
     { value: 'tacos-2', viewValue: 'Tacos' }
   ];
+
+  favoriteSeason: string;
+  seasons: string[] = ['Winter', 'Spring', 'Summer', 'Autumn'];
   form: FormGroup;
   constructor(private fb: FormBuilder, private af: AngularFirestore) {
     this.createForm();

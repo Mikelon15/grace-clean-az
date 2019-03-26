@@ -1,49 +1,56 @@
 <!-- <div style="height: 80px;"></div> -->
 <div class="container">
-  <h1>Quote</h1>
-  <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <br>
-    <mat-form-field class="full-width">
-      <mat-label>Bedrooms</mat-label>
-      <mat-select>
-        <mat-option *ngFor="let food of foods" [value]="food.value">
-          {{food.viewValue}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field> 
-    <br>
-    <mat-form-field class="full-width">
-      <mat-label>Bathrooms</mat-label>
-      <mat-select>
-        <mat-option *ngFor="let food of foods" [value]="food.value">
-          {{food.viewValue}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-    <br>
-    <mat-form-field class="full-width">
-      <mat-label>How often?</mat-label>
-      <mat-select>
-        <mat-option *ngFor="let food of foods" [value]="food.value">
-          {{food.viewValue}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-    <br>
-    <mat-form-field class="full-width">
-      <mat-label>What type?</mat-label>
-      <mat-select>
-        <mat-option *ngFor="let food of foods" [value]="food.value">
-          {{food.viewValue}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-    <br>
-  </form>
-<mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group" >
-  <mat-radio-button class="example-radio-button" *ngFor="let season of seasons" [value]="season">
-    {{season}}
-  </mat-radio-button>
-</mat-radio-group>
+  <div class="form">
+    <h1>Quote</h1>
+    <h5>Fill out the form below to get your quote estimate.</h5>
 
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <br>
+      <h2>Tell us about your home</h2>
+      <mat-form-field class="full-width">
+        <mat-label>Bedrooms</mat-label>
+        <mat-select>
+          <mat-option *ngFor="let food of foods" [value]="food.value">
+            {{food.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br>
+      <mat-form-field class="full-width">
+        <mat-label>Bathrooms</mat-label>
+        <mat-select>
+          <mat-option *ngFor="let food of foods" [value]="food.value">
+            {{food.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br>
+      <mat-form-field class="full-width">
+        <mat-label>How often?</mat-label>
+        <mat-select>
+          <mat-option *ngFor="let food of foods" [value]="food.value">
+            {{food.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br>
+      <mat-form-field class="full-width">
+        <mat-label>What type?</mat-label>
+        <mat-select>
+          <mat-option *ngFor="let food of foods" [value]="food.value">
+            {{food.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br>
+    </form>
+    <h2>Do you want additional services</h2>
+    <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group">
+      <mat-radio-button class="example-radio-button" *ngFor="let season of seasons" [value]="season">
+        {{season}}
+      </mat-radio-button>
+    </mat-radio-group>
+    <h2>Is you home in the range of service</h2>
+
+  </div>
 </div>

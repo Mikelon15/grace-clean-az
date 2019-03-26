@@ -3,11 +3,16 @@ h1 {
 }
 
 .container {
-    width: 60%;
-    margin: 100px 30% 150px 30%;
+    display: grid;
+    grid-template-columns: 1fr minmax(450px, 2fr) minmax(200px, 1fr) 1fr;
+    grid-template-areas: " . form results ."
+}
+.form {
+    margin: 100px 25px;
+    grid-area: form;
 }
 .full-width {
-    width: 60%;
+    width: 100%;
 }
 .example-radio-group {
     display: flex;

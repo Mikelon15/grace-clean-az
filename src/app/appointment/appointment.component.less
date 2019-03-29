@@ -1,0 +1,92 @@
+.container {
+    display: grid;
+    grid-template-columns: 1fr minmax(auto, 750px) 1fr;
+    grid-template-areas: '. appointment .';
+}
+.card {
+    padding: 10px 10px;
+    border-radius: 10px;
+    background-color: #f2f4f6;
+    // display: grid;
+    h4 {
+        display: inline;
+    }
+    button {
+        float: right;
+    }
+}
+.main-content {
+    grid-area: appointment;
+    margin-top: 100px;
+    margin-bottom: 50px;
+}
+.section-title {
+    width: 100%;
+}
+.appointment-container {
+    display: grid;
+    grid-template-columns: minmax(250px, 400px) minmax(250px, 400px) ;
+    grid-template-areas: 'contact date';
+    grid-column-gap: 20px;
+}
+
+.contact-information {
+    grid-area: contact;
+}
+
+.date-picker {
+    grid-area: date;
+}
+
+.full, .full-width {
+    width: 100%;
+}
+.submit-form {
+    width: 100%;
+    text-align: end;
+    margin: 25px 0;
+}
+
+.card {
+    h4 {
+        margin: 0;
+        
+    }
+}
+
+.slots {
+    height: auto;
+    background-color: #f2f4f6;
+    padding: 5px;
+    text-align: center;
+    border-radius: 10px;
+    h4 {
+        margin: 2px;
+    }
+    .empty {
+        width: 100%;
+        text-align: center;
+        padding-top: 120px;
+        color: gray;
+    }
+    ul {
+        list-style: none;
+        padding: 5px 10% 5px 10%;
+        text-align: center;
+    }
+    li {
+        display: inline-block;
+        border-radius: 3px;
+        margin: 5px 5px;
+        padding: 5px;
+        text-align: center;
+        width: 40%;
+        list-style: none;
+        background-color: navy;
+        color: white;
+
+        &:hover {
+            background-color: violet;
+        }
+    }
+}

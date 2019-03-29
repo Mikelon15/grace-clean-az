@@ -1,4 +1,4 @@
-import { BrowserModule,  } from '@angular/platform-browser';
+import { BrowserModule, } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 
@@ -16,6 +16,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatRadioModule } from '@angular/material/radio'
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material';
 
 
 
@@ -26,6 +28,7 @@ import { HomeComponent } from './home/home.component';
 import { ContactComponent } from './contact/contact.component';
 import { ServicesComponent } from './services/services.component';
 import { QuoteDateComponent } from './quote-date/quote-date.component';
+import { AppointmentComponent } from './appointment/appointment.component';
 
 @NgModule({
   declarations: [
@@ -33,14 +36,15 @@ import { QuoteDateComponent } from './quote-date/quote-date.component';
     HomeComponent,
     ContactComponent,
     ServicesComponent,
-    QuoteDateComponent
+    QuoteDateComponent,
+    AppointmentComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     CommonUXModule,
     BrowserAnimationsModule,
-    
+
     RecaptchaFormsModule,
     RecaptchaModule,
 
@@ -55,6 +59,9 @@ import { QuoteDateComponent } from './quote-date/quote-date.component';
     MatCheckboxModule,
     MatChipsModule,
     MatRadioModule,
+    MatDatepickerModule,
+    MatNativeDateModule
+
   ],
   providers: [{
     provide: RECAPTCHA_SETTINGS,

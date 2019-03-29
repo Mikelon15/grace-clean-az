@@ -9,7 +9,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
 
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
@@ -48,6 +48,7 @@ import { QuoteDateComponent } from './quote-date/quote-date.component';
     AngularFirestoreModule,
 
     ReactiveFormsModule,
+    FormsModule,
     MatInputModule,
     MatSelectModule,
     MatButtonModule,

@@ -5,6 +5,7 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+
 # builds
 dist/grace-clean-az/
 
@@ -62,3 +63,5 @@ typings/
 
 # next.js build output
 .next
+src/environments/environment.ts
+src/environments/environment.prod.ts

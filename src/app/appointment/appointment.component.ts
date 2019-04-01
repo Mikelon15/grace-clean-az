@@ -32,11 +32,11 @@ export class AppointmentComponent implements OnInit {
       date:  ['', Validators.required],
       message: [''],
     });
+
     console.log(this.form.controls);
   }
   onSubmit() {
     const { name, email, message, date } = this.form.value;
-    // const date = Date();
     const html = `
       <div>From: ${name}</div>
       <div>Email: <a href="mailto:${email}">${email}</a></div>

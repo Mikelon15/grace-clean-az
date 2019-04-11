@@ -2,55 +2,73 @@
 <div class="container">
   <div class="form">
     <h1>Quote</h1>
-    <h5>Fill out the form below to get your quote estimate.</h5>
-
-    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <h4>Fill out the form below to get a free quote estimate</h4>
+    <form [formGroup]="form">
       <br>
-      <h2>Tell us about your home</h2>
       <mat-form-field class="full-width">
         <mat-label>Bedrooms</mat-label>
-        <mat-select>
-          <mat-option *ngFor="let food of foods" [value]="food.value">
-            {{food.viewValue}}
+        <mat-select formControlName="roomCount">
+          <mat-option *ngFor="let room of roomCount" [value]="room">
+            {{room.name}}
           </mat-option>
         </mat-select>
       </mat-form-field>
       <br>
       <mat-form-field class="full-width">
         <mat-label>Bathrooms</mat-label>
-        <mat-select>
-          <mat-option *ngFor="let food of foods" [value]="food.value">
-            {{food.viewValue}}
+        <mat-select formControlName="bathCount">
+          <mat-option *ngFor="let room of roomCount" [value]="room">
+            {{room.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br>
+      <mat-form-field class="full-width">
+        <mat-label>Pets</mat-label>
+        <mat-select formControlName="petCount">
+          <mat-option *ngFor="let pets of roomCount" [value]="pets">
+            {{pets.name}}
           </mat-option>
         </mat-select>
       </mat-form-field>
       <br>
       <mat-form-field class="full-width">
         <mat-label>How often?</mat-label>
-        <mat-select>
-          <mat-option *ngFor="let food of foods" [value]="food.value">
-            {{food.viewValue}}
+        <mat-select  formControlName="oftenCount" >
+          <mat-option *ngFor="let often of oftenCount" [value]="often">
+            {{often.name}}
           </mat-option>
         </mat-select>
       </mat-form-field>
       <br>
       <mat-form-field class="full-width">
         <mat-label>What type?</mat-label>
-        <mat-select>
-          <mat-option *ngFor="let food of foods" [value]="food.value">
-            {{food.viewValue}}
+        <mat-select formControlName="cleanTypes">
+          <mat-option *ngFor="let type of cleanTypes" [value]="type">
+            {{type.name}}
           </mat-option>
         </mat-select>
       </mat-form-field>
-      <br>
     </form>
-    <h2>Do you want additional services</h2>
-    <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group">
-      <mat-radio-button class="example-radio-button" *ngFor="let season of seasons" [value]="season">
-        {{season}}
-      </mat-radio-button>
-    </mat-radio-group>
-    <h2>Is you home in the range of service</h2>
-
+    <section class="example-section">
+      <br> <mat-checkbox class="example-margin" (change)="additionalSelect()" [(ngModel)]="provideSupplies">Will you provide supplies?</mat-checkbox>
+      <br> <mat-checkbox class="example-margin" (change)="additionalSelect()" [(ngModel)]="refridgerator">Refridgerator</mat-checkbox>
+      <br> <mat-checkbox class="example-margin" (change)="additionalSelect()" [(ngModel)]="ovenCleaning">Oven cleaning</mat-checkbox>
+      <br> <mat-checkbox class="example-margin" (change)="additionalSelect()" [(ngModel)]="wallWashing">Wall washing</mat-checkbox>
+      <br> <mat-checkbox class="example-margin" (change)="additionalSelect()" [(ngModel)]="miniBlinds">Mini Blinds</mat-checkbox>
+      <br> <mat-checkbox class="example-margin" (change)="additionalSelect()" [(ngModel)]="lightFixtures">Lght Fixtures</mat-checkbox>
+    </section>
+  </div>
+  <div class="estimate">
+    <div class="card price">
+      <h2>your estimate</h2>
+      <h4>{{total}}</h4>
+    </div>
+    <br>
+    <div class="card book">
+      <h2>Book us!</h2>
+      <h4>schedule us to your convienence</h4>
+      <a routerLink="/appointment" routerLinkActive="active"><button>set appointment</button></a>
+    </div>
   </div>
 </div>

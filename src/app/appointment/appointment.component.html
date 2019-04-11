@@ -1,0 +1,75 @@
+<div class="container">
+  <div class="main-content">
+    <div class="card">
+      <h4> Want to get a home quote estimate? </h4>
+      <h4> fill out a quick form to get a free quote </h4>
+      <a routerLink="/quote">
+        <button>get quote</button>
+      </a>
+    </div>
+    <div class="section-title">
+      <h1>Book Appointment</h1>
+      <h4>make an appointment with us to start your cleaning service </h4>
+    </div>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="appointment-container">
+        <div class="contact-information">
+          <mat-form-field class="full-width">
+            <input matInput type="text" placeholder="Name" formControlName="name">
+            <mat-error *ngIf="form.controls.message.hasError('required')">
+              Name is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+          <br>
+          <mat-form-field class="full-width">
+            <input matInput type="text" placeholder="Email" formControlName="email">
+            <mat-error *ngIf="form.controls.email.hasError('email') && !form.controls.email.hasError('required')">
+              Please enter a valid email address
+            </mat-error>
+            <mat-error *ngIf="form.controls.email.hasError('required')">
+              Email is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+          <br>
+          <mat-form-field class="full-width">
+            <input matInput type="text" placeholder="Phone" formControlName="phone">
+            <mat-error *ngIf="form.controls.phone.hasError('phone') && !form.controls.phone.hasError('required')">
+              Please enter a valid phone number
+            </mat-error>
+            <mat-error *ngIf="form.controls.phone.hasError('required')">
+              Phone is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+          <br>
+          <mat-form-field class="full-width">
+            <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="2"
+              cdkAutosizeMaxRows="15" placeholder="Any notes" formControlName="message"> </textarea>
+          </mat-form-field>
+
+        </div>
+        <div class="date-picker">
+          <div class="slots">
+            <mat-form-field class="full">
+              <input matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="date">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <div *ngIf="!availableSlots.length" class="empty">
+              <h3> Choose a date above! </h3>
+            </div>
+            <div *ngIf="availableSlots.length">
+              <h4>pick a time</h4>
+              <ul>
+                <li *ngFor="let slot of availableSlots"> {{slot}} </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="submit-form">
+          <button type="submit" [disabled]="form.invalid">Submit</button>
+      </div>
+    </form>
+
+  </div>
+</div>

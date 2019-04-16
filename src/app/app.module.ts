@@ -5,8 +5,6 @@ import { NgModule } from '@angular/core';
 import { RecaptchaModule, RECAPTCHA_SETTINGS, RecaptchaSettings } from 'ng-recaptcha';
 import { RecaptchaFormsModule } from 'ng-recaptcha/forms';
 
-import { AngularFireModule } from '@angular/fire';
-import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
 
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
@@ -29,6 +27,7 @@ import { ContactComponent } from './contact/contact.component';
 import { ServicesComponent } from './services/services.component';
 import { QuoteDateComponent } from './quote-date/quote-date.component';
 import { AppointmentComponent } from './appointment/appointment.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -44,13 +43,13 @@ import { AppointmentComponent } from './appointment/appointment.component';
     AppRoutingModule,
     CommonUXModule,
     BrowserAnimationsModule,
+    HttpClientModule,
 
+    // google recaptcha
     RecaptchaFormsModule,
     RecaptchaModule,
-
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule,
-
+    
+    // material
     ReactiveFormsModule,
     FormsModule,
     MatInputModule,

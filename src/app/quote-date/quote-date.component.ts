@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AngularFirestore } from '@angular/fire/firestore';
 import { distinctUntilChanged } from 'rxjs/operators';
 
 export interface Food {
@@ -53,7 +52,7 @@ export class QuoteDateComponent implements OnInit{
   favoriteSeason: string;
   form: FormGroup;
 
-  constructor(private fb: FormBuilder, private af: AngularFirestore) {}
+  constructor(private fb: FormBuilder ) {}
 
   ngOnInit() {
     this.form = this.fb.group({

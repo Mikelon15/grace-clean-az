@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-contact',
@@ -11,7 +11,10 @@ export class ContactComponent {
 
   form: FormGroup;
   successSent = false;
-  constructor(private fb: FormBuilder, private af: AngularFirestore ) {
+  constructor(
+    private fb: FormBuilder, 
+    private http: HttpClient
+  ) {
     this.createForm();
   }
   createForm() {
@@ -32,8 +35,12 @@ export class ContactComponent {
       <div>Date: ${date}</div>
       <div>Message: ${message}</div>
     `;
-    let formRequest = { name, email, message, date, html };
-    this.af.collection('messages').add(formRequest);
+    let form = { name, email, message, date };
+
+    // this.af.collection('messages').add(formRequest);
+    this.http.post('https://us-central1-grace-clean.cloudfunctions.net/api/postContactMessage', form).subscribe(val => console.log(val));
+
+
     this.form.reset();
     this.successSent = true;
   }

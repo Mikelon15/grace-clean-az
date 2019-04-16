@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-appointment',
@@ -17,12 +17,17 @@ export class AppointmentComponent implements OnInit {
   ];
   form: FormGroup;
   successSent = false;
+  str = 'some text';
 
-
-  constructor(private fb: FormBuilder, private af: AngularFirestore) {
+  constructor(
+    private fb: FormBuilder, 
+    private http: HttpClient
+  ) { }
+  
+  ngOnInit() { 
     this.createForm();
   }
-  ngOnInit() { }
+  
   createForm() {
     // this.availableSlots.length
     this.form = this.fb.group({
@@ -44,10 +49,18 @@ export class AppointmentComponent implements OnInit {
       <div>Message: ${message}</div>
     `;
     console.log(date);
-    let formRequest = { name, email, message, date, html };
-    this.af.collection('appointment').add(formRequest);
+    let formRequest = { name, email, message, date };
     this.form.reset();
     this.successSent = true;
+  }
+  sayHello() {
+    let prom = this.http.get('https://us-central1-grace-clean.cloudfunctions.net/helloWorld');
+    prom.subscribe(
+      (val: any) => {
+        this.str = val.msg;
+      },
+      (error) => {this.str = error; console.log(error)}
+    );
   }
 
 }

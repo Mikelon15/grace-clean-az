@@ -60,7 +60,7 @@
             <div *ngIf="availableSlots.length">
               <h4>pick a time</h4>
               <ul>
-                <li *ngFor="let slot of availableSlots"> {{slot}} </li>
+                <li *ngFor="let slot of availableSlots; index as i" (click)=onSelectTime(i)> {{slot}} </li>
               </ul>
             </div>
           </div>

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
+import { FirebaseService } from '../shared/firebase.service';
+
 
 @Component({
   selector: 'app-contact',
@@ -12,8 +13,8 @@ export class ContactComponent {
   form: FormGroup;
   successSent = false;
   constructor(
-    private fb: FormBuilder, 
-    private http: HttpClient
+    private fb: FormBuilder,
+    private fire: FirebaseService
   ) {
     this.createForm();
   }
@@ -37,10 +38,7 @@ export class ContactComponent {
     `;
     let form = { name, email, message, date };
 
-    // this.af.collection('messages').add(formRequest);
-    this.http.post('https://us-central1-grace-clean.cloudfunctions.net/api/postContactMessage', form).subscribe(val => console.log(val));
-
-
+    this.fire.postContactMessage(form).subscribe(val => console.log(val));
     this.form.reset();
     this.successSent = true;
   }

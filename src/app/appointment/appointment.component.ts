@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
+import { FirebaseService } from '../shared/firebase.service';
 
 @Component({
   selector: 'app-appointment',
@@ -10,18 +10,23 @@ import { HttpClient } from '@angular/common/http';
 })
 
 export class AppointmentComponent implements OnInit {
-  availableSlots = [
-    '8:00', '8:30', '9:00', '9:30', '10:00', '10:30',
-    '11:00', '11:30', '12:00', '12:30', '1:00', '1:30',
-    '2:00', '2:30', '3:00', '3:30', '4:30', '4:30'
-  ];
+  sel = ''
   form: FormGroup;
   successSent = false;
-  str = 'some text';
+  availableSlots = [
+    '10:00', '10:30', '11:00', '11:30',
+    '12:00', '12:30', '1:00', '1:30', '2:00',
+    '2:30', '3:00', '3:30', '4:00', '4:30'
+  ];
+  selectTime =  [
+    '1000', '1030', '1100', '1130',
+    '1200', '1230', '0100', '0130', '0200',
+    '0230', '0300', '0330', '0400', '0430'
+  ];
 
   constructor(
     private fb: FormBuilder, 
-    private http: HttpClient
+    private fire: FirebaseService
   ) { }
   
   ngOnInit() { 
@@ -40,6 +45,9 @@ export class AppointmentComponent implements OnInit {
 
     console.log(this.form.controls);
   }
+  onSelectTime(i) {
+    this.sel = i;
+  }
   onSubmit() {
     const { name, email, message, date } = this.form.value;
     const html = `
@@ -48,19 +56,17 @@ export class AppointmentComponent implements OnInit {
       <div>Date: ${date}</div>
       <div>Message: ${message}</div>
     `;
-    console.log(date);
-    let formRequest = { name, email, message, date };
+    
+    let formRequest = { 
+      name: name,
+      email: email,
+      phone: '',
+      notes: message,
+      date: '12121995',
+      time: this.selectTime[this.sel]
+    };
+    this.fire.postAppointmentTime(formRequest).subscribe(val => console.log(val));
     this.form.reset();
     this.successSent = true;
   }
-  sayHello() {
-    let prom = this.http.get('https://us-central1-grace-clean.cloudfunctions.net/helloWorld');
-    prom.subscribe(
-      (val: any) => {
-        this.str = val.msg;
-      },
-      (error) => {this.str = error; console.log(error)}
-    );
-  }
-
 }

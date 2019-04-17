@@ -53,3 +53,21 @@ h1 {
 .book {
     top: 250px;
 }
+@media only screen and (max-width: 650px) {
+    .container {
+        margin: 100px 0;
+        display: grid;
+        grid-template-columns: 1fr minmax(200px, auto) 1fr;
+        grid-template-rows: auto auto;
+        grid-template-areas: " . form ."". estimate ."
+    }
+
+    // .price {
+        // width: 100%;
+        // margin: 0;
+        // left: ;
+        // position: fixed;
+        // top: initial;
+        // bottom: 0;
+    // }
+}

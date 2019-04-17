@@ -1,7 +1,14 @@
 .container {
+    margin-top: 80px;
+    padding: 20px 0 20px 0;
     display: grid;
-    grid-template-columns: 1fr minmax(auto, 750px) 1fr;
+    grid-template-columns: 1fr minmax(300px, 900px) 1fr;
     grid-template-areas: '. appointment .';
+
+    background-color: #d8e8ec91;
+    background-image: url(https://cdn.hipwallpaper.com/i/93/15/pS9IQz.jpg);
+    background-size: cover;
+    background-blend-mode: lighten;
 }
 .card {
     padding: 10px 10px;
@@ -15,19 +22,19 @@
         float: right;
     }
 }
-.main-content {
+.main-content, .loading {
     grid-area: appointment;
-    margin-top: 100px;
-    margin-bottom: 50px;
+    min-height: 500px;
 }
 .section-title {
-    width: 100%;
+    box-sizing: content-box;
 }
 .appointment-container {
     display: grid;
     grid-template-columns: minmax(250px, 400px) minmax(250px, 400px) ;
     grid-template-areas: 'contact date';
     grid-column-gap: 20px;
+
 }
 
 .contact-information {
@@ -53,11 +60,9 @@
         
     }
 }
-
 .slots {
     height: auto;
-    background-color: #f2f4f6;
-    padding: 5px;
+    padding: 10px;
     text-align: center;
     border-radius: 10px;
     h4 {
@@ -66,7 +71,7 @@
     .empty {
         width: 100%;
         text-align: center;
-        padding-top: 120px;
+        padding-top: 50px;
         color: gray;
     }
     ul {
@@ -86,7 +91,37 @@
         color: white;
 
         &:hover {
-            background-color: violet;
+            color: black;
+            background-color:rgb(213, 220, 226);
         }
     }
+    .selected {
+        background-color: rgb(185, 205, 223);
+        color: black;
+    }
+}
+
+.pretty-box {
+    padding: 15px;
+    border-radius: 15px;
+    background-color: #f9fdfff1;
+    margin: 15px;
+}
+@media only screen and (max-width: 650px) {
+    .appointment-container {
+        display: grid;
+        grid-template-columns: auto;
+        grid-template-rows: auto;
+        grid-template-areas: 'contact''date';
+        grid-column-gap: 20px;
+    }
+    .contact-information {
+        padding: 10px;
+    }
+    
+    .date-picker {
+        // padding: 10px;
+    }
+
+
 }

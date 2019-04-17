@@ -39,13 +39,13 @@ app.post('/postContactMessage', async (req: functions.https.Request, res: functi
         .catch(error => res.status(500).send(error));
 });
 
-app.get('/getAvailableTimes', async (req: functions.https.Request, res: functions.Response) => {
+app.get('/getAvailableTimes/:date', async (req: functions.https.Request, res: functions.Response) => {
     let appt: any;
-
     const err = { err: "unable to parse appt" };
-    (req && req.body) ? appt = req.body : res.status(500).json(err);
+    (req && req.params && req.params.date) ? appt = req.params.date : res.status(500).json(err);
 
-    admin.firestore().collection('appointments').doc(appt.date).listCollections() //collection(appt.time).get()
+    
+    admin.firestore().collection('appointments').doc(appt).listCollections() //collection(appt.time).get()
         .then((val) => {
             // let vals = [];
             const times = [];

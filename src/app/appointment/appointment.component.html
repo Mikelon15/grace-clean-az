@@ -1,17 +1,24 @@
 <div class="container">
   <div class="main-content">
-    <div class="card">
+    <div class="pretty-box card">
       <h4> Want to get a home quote estimate? </h4>
       <h4> fill out a quick form to get a free quote </h4>
       <a routerLink="/quote">
         <button>get quote</button>
       </a>
     </div>
-    <div class="section-title">
+    <div class="pretty-box section-title" *ngIf="!apptSubmitted">
       <h1>Book Appointment</h1>
       <h4>make an appointment with us to start your cleaning service </h4>
     </div>
-    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="pretty-box section-title" *ngIf="apptSubmitted">
+      <h1>Book Appointment</h1>
+      <h4>Your appointment has been set! We will be in contact</h4>
+    </div>
+    <div class="pretty-box loading" *ngIf="isLoading">
+      <mat-spinner></mat-spinner>
+    </div>
+    <form class="pretty-box" *ngIf=" !isLoading && !apptSubmitted" [formGroup]="form" (ngSubmit)="onSubmit()">
       <div class="appointment-container">
         <div class="contact-information">
           <mat-form-field class="full-width">
@@ -42,6 +49,16 @@
           </mat-form-field>
           <br>
           <mat-form-field class="full-width">
+            <input matInput type="text" placeholder="Address" formControlName="address">
+            <mat-error *ngIf="form.controls.address.hasError('address') && !form.controls.address.hasError('required')">
+              Please enter a valid address number
+            </mat-error>
+            <mat-error *ngIf="form.controls.address.hasError('required')">
+              Address is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+          <br>
+          <mat-form-field class="full-width">
             <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="2"
               cdkAutosizeMaxRows="15" placeholder="Any notes" formControlName="message"> </textarea>
           </mat-form-field>
@@ -55,12 +72,13 @@
               <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
             <div *ngIf="!availableSlots.length" class="empty">
-              <h3> Choose a date above! </h3>
+              <h3> Choose a date above </h3>
             </div>
             <div *ngIf="availableSlots.length">
-              <h4>pick a time</h4>
+              <h4 *ngIf="!noDateError">please choose a time</h4>
+              <h4 *ngIf="noDateError" style="color: red;">please choose a time</h4>
               <ul>
-                <li *ngFor="let slot of availableSlots; index as i" (click)=onSelectTime(i)> {{slot}} </li>
+                <li *ngFor="let slot of availableSlots; index as i" (click)=onSelectTime(i) [ngClass]="{'selected': i == sel}"> {{slot}} </li>
               </ul>
             </div>
           </div>

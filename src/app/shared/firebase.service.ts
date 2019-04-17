@@ -18,8 +18,8 @@ export class FirebaseService {
     return this.http.post('https://us-central1-grace-clean.cloudfunctions.net/api/postContactMessage', form);
   }
 
-  getAvailableTimes(): Observable<any> {
-    return this.http.get('https://us-central1-grace-clean.cloudfunctions.net/api/getAvailableTimes');
+  getAvailableTimes(date: string): Observable<any> {
+    return this.http.get('https://us-central1-grace-clean.cloudfunctions.net/api/getAvailableTimes/'+ date);
   }
 
   postAppointmentTime(apptm: Types.Appointment): Observable<any> {

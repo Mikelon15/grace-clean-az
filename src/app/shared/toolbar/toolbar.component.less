@@ -3,6 +3,9 @@
 @secondary-color: rgb(70, 70, 95);
 @secondary-bg: @primary-bg;
 
+@alt-color: #ffb03a;
+@on-alt-color: white;
+
 /* desktop topnav state */
 :host {
     position: fixed;
@@ -86,7 +89,31 @@ nav {
         color: @primary-color;
         text-decoration: none;
     }
-    
+    .active {
+        position: relative;
+        margin: 3px;
+
+        // text-decoration: underline;
+        // color: @alt-color;
+
+        width: 100%;
+        // &:hover, &:focus, &:active {
+        //     /* cursor: pointer;*/
+        //     &:after {
+        //     }
+        // }
+        
+        &:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -7px;
+            height: 4px;
+            background-color: @alt-color;
+            width: 100%;
+            // transition: width .25s;
+        }
+    }
     ul {
         list-style: none;
     }
@@ -97,7 +124,6 @@ nav {
         padding: 0 15px;
     }
 }
-
 .nav-toggle-label {
     display: none;
 }

@@ -5,9 +5,22 @@ const express = require('express');
 const myParser = require("body-parser");
 const cors = require('cors'); // CORS Express middleware to enable CORS Requests.
 
+const nodemailer = require('nodemailer');
+
 const app = express();
-app.use(cors())
+app.use(cors());
 app.use(myParser.urlencoded({ extended: true }));
+
+//utouoglfxcemlogl
+const gmailEmail = functions.config().gmail.email;
+const gmailPassword = functions.config().gmail.password;
+const mailTransport = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: gmailEmail,
+        pass: gmailPassword,
+    },
+});
 
 const creds: admin.ServiceAccount = {
     // type: "service_account",
@@ -37,6 +50,24 @@ app.post('/postContactMessage', async (req: functions.https.Request, res: functi
     admin.firestore().collection('messages').add(form)
         .then(val => res.status(200).json({ msg: "contact form sent successully" }))
         .catch(error => res.status(500).send(error));
+
+    const mailOptions = {
+        from: '"Grace Clean AZ" <hello@gracecleanaz.com>',
+        to: req.body.email,
+        subject: '',
+        text: ''
+    };
+
+    // Building Email message.
+    mailOptions.subject = 'Thanks for contacting us!';
+    mailOptions.text = 'We will be getting back to you as soon as possible. Thank you for your patience.';
+
+    try {
+        await mailTransport.sendMail(mailOptions);
+        console.log(`New subscription confirmation email sent to:`);
+    } catch (error) {
+        console.error('There was an error while sending the email:', error);
+    }
 });
 
 app.get('/getAvailableTimes/:date', async (req: functions.https.Request, res: functions.Response) => {
@@ -76,6 +107,25 @@ app.post('/postAppointmentTime', async (req: functions.https.Request, res: funct
     admin.firestore().collection('appointments').doc(appt.date).collection(appt.time).add(appt)
         .then(val => res.status(200).json({ msg: "appointment set successfully" }))
         .catch(error => res.status(500).send(error));
+
+
+    const mailOptions = {
+        from: '"Grace Clean AZ" <hello@gracecleanaz.com>',
+        to: req.body.email,
+        subject: '',
+        text: ''
+    };
+
+    // Building Email message.
+    mailOptions.subject = 'Thanks for setting an appointment!';
+    mailOptions.text = 'We will be getting back to you as soon as possible. Thank you for your patience.';
+
+    try {
+        await mailTransport.sendMail(mailOptions);
+        console.log(`New subscription confirmation email sent to:`);
+    } catch (error) {
+        console.error('There was an error while sending the email:', error);
+    }
 });
 
 // Expose the API as a function

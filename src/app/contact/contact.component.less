@@ -1,11 +1,12 @@
+@import (less) "../../assets/font-styles.less";
+
 .contact-us{
-    min-height: 400px;
-    // min-width: auto;
-    // max-width: 750px;
+    min-height: 700px;
+    padding: 50px 0;
+    text-align: center;
 }
 
 form {
-    // widows: ;
     width: 100%;
     max-width: 450px; 
 }
@@ -21,29 +22,32 @@ form {
     margin: 15px 0 0 0;
     width: 100%;
 }
-h1 {
-    color: navy;
-    margin-bottom: 10px;
-}
 h5 {
     margin: 0;
+    width: 100%;
+    max-width: 450px;
 }
 
  button {
      padding: 10px;
      border-radius: 5px;
      border-width: 0;
-     background-color: navy;
+     width: 100%;
+     background-color: @primary-color;
      color: white;
 
      &:hover {
-         background-color: blue;
+         background-color: @secondary-color;
          cursor: pointer;
      }
 
      &:disabled {
-         background-color: gray;
-         color: lightgray;
+         background-color: lightgray;
+         color: white;
          cursor: inherit;
      }
+ }
+
+ .alt-text {
+     color: @alt-color;
  }

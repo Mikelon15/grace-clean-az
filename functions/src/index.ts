@@ -51,20 +51,25 @@ app.post('/postContactMessage', async (req: functions.https.Request, res: functi
         .then(val => res.status(200).json({ msg: "contact form sent successully" }))
         .catch(error => res.status(500).send(error));
 
+    // Building Email message.
     const mailOptions = {
         from: '"Grace Clean AZ" <hello@gracecleanaz.com>',
         to: req.body.email,
-        subject: '',
-        text: ''
+        subject: 'Thank you for contacting Grace Clean AZ!',
+        text:  `Thank you for reaching out to us with your concerns. We will reach back to you as soon as possible. 
+                Feel free to give us a call at 602-626-4902.
+
+                On ${req.body.date}, you reached out to us:
+                Name: ${req.body.name}
+                Email: ${req.body.email}
+
+                Message: 
+                ${req.body.message}
+                `
     };
-
-    // Building Email message.
-    mailOptions.subject = 'Thanks for contacting us!';
-    mailOptions.text = 'We will be getting back to you as soon as possible. Thank you for your patience.';
-
     try {
         await mailTransport.sendMail(mailOptions);
-        console.log(`New subscription confirmation email sent to:`);
+        console.log(`Contact message email sent.`);
     } catch (error) {
         console.error('There was an error while sending the email:', error);
     }
@@ -76,21 +81,10 @@ app.get('/getAvailableTimes/:date', async (req: functions.https.Request, res: fu
     (req && req.params && req.params.date) ? appt = req.params.date : res.status(500).json(err);
 
     
-    admin.firestore().collection('appointments').doc(appt).listCollections() //collection(appt.time).get()
+    admin.firestore().collection('appointments').doc(appt).listCollections()
         .then((val) => {
-            // let vals = [];
             const times = [];
-            val.map(item => {
-                times.push(item.id);
-                // let p = item.get();
-                // vals.push(p); 
-            });
-            // Promise.all(vals).then((val: QuerySnapshot[]) => {                
-            //     let vals = val.map(v => {
-            //         return v.docs.map(d => {return d.data()});
-            //     })
-            //     console.log(vals);
-            // });
+            val.map(item => { times.push(item.id); });
             return res.status(200).send(times);
         })
         .catch((error) => {
@@ -107,7 +101,6 @@ app.post('/postAppointmentTime', async (req: functions.https.Request, res: funct
     admin.firestore().collection('appointments').doc(appt.date).collection(appt.time).add(appt)
         .then(val => res.status(200).json({ msg: "appointment set successfully" }))
         .catch(error => res.status(500).send(error));
-
 
     const mailOptions = {
         from: '"Grace Clean AZ" <hello@gracecleanaz.com>',

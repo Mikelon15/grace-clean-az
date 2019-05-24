@@ -1,3 +1,5 @@
+@import (less) "../../assets/font-styles.less";
+
 .container {
     margin-top: 80px;
     padding: 20px 0 20px 0;
@@ -10,12 +12,22 @@
     background-size: cover;
     background-blend-mode: lighten;
 }
+.button {
+    &:disabled {
+        color: white;
+        background-color: lightgray;
+    }
+}
 .card {
     padding: 10px 10px;
     border-radius: 10px;
     background-color: #f2f4f6;
+    box-sizing: content-box;
+    min-height: 40px;
+    height: auto;
     // display: grid;
     h4 {
+        size: 2em;
         display: inline;
     }
     button {

@@ -13,3 +13,23 @@ h1 {
     font-weight: 400;
     font-size: 42px;
 }
+
+
+.button {
+    border-radius: 5px;
+    background-color: @primary-color;
+    color: @primary-bg;
+
+    padding: 7px;
+    font-size: 1.1rem;
+    cursor: pointer;
+
+    &:hover {
+        background-color: @secondary-color;
+    }
+}
+.button.alternate {
+    background-color: @alt-color;
+    color: @on-alt-color;
+}
+

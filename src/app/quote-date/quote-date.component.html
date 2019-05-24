@@ -17,7 +17,7 @@
       <mat-form-field class="full-width">
         <mat-label>Bathrooms</mat-label>
         <mat-select formControlName="bathCount">
-          <mat-option *ngFor="let room of roomCount" [value]="room">
+          <mat-option *ngFor="let room of bathCount" [value]="room">
             {{room.name}}
           </mat-option>
         </mat-select>
@@ -26,7 +26,7 @@
       <mat-form-field class="full-width">
         <mat-label>Pets</mat-label>
         <mat-select formControlName="petCount">
-          <mat-option *ngFor="let pets of roomCount" [value]="pets">
+          <mat-option *ngFor="let pets of petCount" [value]="pets">
             {{pets.name}}
           </mat-option>
         </mat-select>
@@ -68,7 +68,7 @@
     <div class="card book">
       <h2>Book us!</h2>
       <h4>schedule us to your convienence</h4>
-      <a routerLink="/appointment" routerLinkActive="active"><button>set appointment</button></a>
+      <a routerLink="/appointment" routerLinkActive="active"><button class="button">set appointment</button></a>
     </div>
   </div>
 </div>

@@ -18,29 +18,41 @@ export class QuoteDateComponent implements OnInit{
   total = 0;
 
   roomCount: any = [
-    { name: '1', price: 25 }, 
-    { name: '2', price: 50 }, 
-    { name: '3', price: 75 }, 
-    { name: '4+', price: 100 }];
+    { name: '1', price: 50 }, 
+    { name: '2', price: 100 }, 
+    { name: '3', price: 150 }, 
+    { name: '4+', price: 200 }];
+
+    bathCount: any = [
+      { name: '1', price: 25 }, 
+      { name: '2', price: 50 }, 
+      { name: '3', price: 75 }, 
+      { name: '4+', price: 100 }];
+
+    petCount: any = [
+      { name: '1', price: 10}, 
+      { name: '2', price: 15 }, 
+      { name: '3', price: 20 }, 
+      { name: '4+', price: 25 }];
 
   cleanTypes: any = [
-    { name: 'Standard', price: 25 }, 
-    { name: 'Deep', price: 25 }, 
-    { name: 'Party/Special Occasion', price: 25 }, 
-    { name: 'Move In/Move Out', price: 25 }];
+    { name: 'Standard', price: 0 }, 
+    { name: 'Deep', price: 50 }, 
+    { name: 'Party/Special Occasion', price: 50 }, 
+    { name: 'Move In/Move Out', price: 50 }];
 
   oftenCount: any = [
-    { name:'One time', price: 25 }, 
-    { name:'Weekly', price: 25 }, 
-    { name:'Twice a month', price: 25 }, 
-    { name: 'Monthly', price: 25 }];
+    { name:'One time', price: 0 }, 
+    { name:'Weekly', price: -25 }, 
+    { name:'Twice a month', price: -15 }, 
+    { name: 'Monthly', price: -10 }];
 
   additionalTypes: any = [
-    { name: 'Oven cleaning', price: 25 },
-    { name: 'Refridgerator', price: 25 },
-    { name: 'Wall washing', price: 25 },
-    { name: 'Mini Blinds', price: 25 },
-    { name: 'Light Fixtures', price: 25 }]
+    { name: 'Oven cleaning', price: 10 },
+    { name: 'Refridgerator', price: 10 },
+    { name: 'Wall washing', price: 10 },
+    { name: 'Mini Blinds', price: 10 },
+    { name: 'Light Fixtures', price: 10 }]
 
   ovenCleaning = false;
   refridgerator = false;
@@ -61,7 +73,8 @@ export class QuoteDateComponent implements OnInit{
       cleanTypes: [],
       roomCount: [],
       bathCount: [],
-      petCount: []
+      petCount: [],
+
     });
 
     this.form.valueChanges.subscribe(val => {

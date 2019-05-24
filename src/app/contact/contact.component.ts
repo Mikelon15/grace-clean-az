@@ -25,11 +25,11 @@ export class ContactComponent {
       message: ['', Validators.required],
       recaptcha: [null, Validators.required]
     });
-    console.log(this.form.controls);
   }
   onSubmit() {
     const { name, email, message } = this.form.value;
-    const date = Date();
+    const date = (new Date()).toUTCString();
+    
     const html = `
       <div>From: ${name}</div>
       <div>Email: <a href="mailto:${email}">${email}</a></div>

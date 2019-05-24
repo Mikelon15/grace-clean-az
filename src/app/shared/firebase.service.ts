@@ -9,20 +9,21 @@ import { Observable, of } from 'rxjs';
 
 
 export class FirebaseService {
-
+  endpoint = 'https://us-central1-grace-clean.cloudfunctions.net';
+  // endpoint = 'http://localhost:8555';
   constructor(
     private http: HttpClient
   ) { }
 
   postContactMessage(form: Types.ContactForm): Observable<any> {
-    return this.http.post('https://us-central1-grace-clean.cloudfunctions.net/api/postContactMessage', form);
+    return this.http.post(`${this.endpoint}/api/postContactMessage`, form);
   }
 
   getAvailableTimes(date: string): Observable<any> {
-    return this.http.get('https://us-central1-grace-clean.cloudfunctions.net/api/getAvailableTimes/'+ date);
+    return this.http.get(`${this.endpoint}/api/getAvailableTimes/${date}`);
   }
 
   postAppointmentTime(apptm: Types.Appointment): Observable<any> {
-    return this.http.post('https://us-central1-grace-clean.cloudfunctions.net/api/postAppointmentTime', apptm);
+    return this.http.post(`${this.endpoint}/api/postAppointmentTime`, apptm);
   }
 }

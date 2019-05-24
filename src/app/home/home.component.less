@@ -1,15 +1,16 @@
-@primary-color: navy;
-@primary-bg: #f2f4f6;
-@secondary-color: rgb(70, 70, 95);
-@secondary-bg: @primary-bg;
+@import (less) "../../assets/font-styles.less";
 
-@alt-color: #ffb03a;
-@on-alt-color: white; 
+// @primary-color: navy;
+// @primary-bg: #f2f4f6;
+// @secondary-color: rgb(70, 70, 95);
+// @secondary-bg: @primary-bg;
+
+// @alt-color: #ffb03a;
+// @on-alt-color: white; 
 
 h2 {
     color: @primary-color;
 }
-
 
 /* SECTION */
 a {
@@ -19,7 +20,7 @@ a {
     width: 100%;
     text-align: center;
     box-sizing: content-box;
-    padding: 10px;
+    padding: 75px 0;
     background-color: @secondary-bg;
 
 }
@@ -29,6 +30,7 @@ a {
 
     h1 {
         color: @primary-color;
+        margin: 0 0 50px 0;
     }
 }
 .large {
@@ -39,6 +41,15 @@ a {
     grid-template-columns: 1fr 350px 1fr 350px 1fr;
     grid-template-areas: "   . left . right .";
 
+    .sml-icon {
+        height: 35px;
+        width: 35px;
+        padding-left: 15px;
+    }
+    h2 {
+        margin: 0;
+        font-size: 2.0em
+    }
     h4 {
         color: @secondary-color;
     }
@@ -132,7 +143,7 @@ h3 {
 
 
     h1 {
-        color: navy;
+        color: @primary-color;
     }
 
     h2 {
